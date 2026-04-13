@@ -1,0 +1,87 @@
+<div class="overlay" (click)="closeModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+
+    <div class="close-btn" (click)="closeModal()">×</div>
+
+    <div *ngIf="student">
+
+      <!-- HEADER -->
+      <div class="header">
+        <div class="avatar">👤</div>
+
+        <div class="student-basic">
+          <h2>{{ student.username }}</h2>
+          <p class="student-id">{{ student.studentId }}</p>
+
+          <span *ngIf="student.placed" class="placed-badge">
+            ✔ Placed at {{ getSelectedCompany(student) }}
+          </span>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="section">
+        <h3>Contact</h3>
+        <div class="info-row">📧 {{ student.email }}</div>
+        <div class="info-row">📞 {{ student.profile?.mobileNumber }}</div>
+      </div>
+
+      <!-- ACADEMICS -->
+      <div class="section">
+        <h3>Academics</h3>
+
+        <div class="grid">
+          <div class="card">
+            <label>Department</label>
+            <strong>{{ student.profile?.department }}</strong>
+          </div>
+
+          <div class="card">
+            <label>Passing Year</label>
+            <strong>{{ student.profile?.passingYear }}</strong>
+          </div>
+
+          <div class="card">
+            <label>CGPA</label>
+            <strong>{{ student.profile?.bachelorsCgpa }}</strong>
+          </div>
+
+          <div class="card">
+            <label>10th</label>
+            <strong>{{ student.profile?.tenthMarks }}</strong>
+          </div>
+
+          <div class="card">
+            <label>12th</label>
+            <strong>{{ student.profile?.twelfthMarks }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- APPLICATIONS -->
+      <div class="section">
+        <h3>Applications ({{ student.applications?.length }})</h3>
+
+        <div *ngFor="let app of student.applications" class="application-card">
+
+          <div class="company">
+            {{ app.companyName }}
+          </div>
+
+          <span
+            class="status"
+            [ngClass]="{
+              'selected': app.status === 'SELECTED',
+              'rejected': app.status === 'REJECTED',
+              'applied': app.status === 'APPLIED'
+            }"
+          >
+            {{ app.status }}
+          </span>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

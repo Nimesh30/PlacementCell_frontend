@@ -1,0 +1,63 @@
+<div class="modal-backdrop">
+  <div class="modal-container">
+
+    <h2>Apply to {{job.companyName}}</h2>
+    <p class="role">{{job.jobTitle}}</p>
+
+    <div class="auto-fill">
+      ✓ AUTO-FILLED FROM YOUR PROFILE
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <label>Name</label>
+        <p>{{student.fullName}}</p>
+      </div>
+
+      <div class="card">
+        <label>Student ID</label>
+        <p>{{student.studentId}}</p>
+      </div>
+
+      <div class="card">
+        <label>College Email</label>
+        <p>{{student.collegeEmail}}</p>
+      </div>
+
+      <div class="card">
+        <label>Mobile</label>
+        <p>{{student.mobileNumber}}</p>
+      </div>
+
+      <div class="card">
+        <label>CGPA</label>
+        <p>{{student.bachelorsCgpa}}</p>
+      </div>
+
+      <div class="card">
+        <label>Department</label>
+        <p>{{student.department}}</p>
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button class="cancel" (click)="close.emit()">
+        Cancel
+      </button>
+
+      <button
+        class="submit"
+        (click)="submitApplication()"
+        [disabled]="applied">
+
+        {{ applied ? 'Applied' : 'Apply' }}
+
+      </button>
+
+    </div>
+
+  </div>
+</div>

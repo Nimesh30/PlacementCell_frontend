@@ -1,0 +1,61 @@
+<div class="overlay" (click)="close()">
+  <div class="modal-box" (click)="$event.stopPropagation()">
+
+    <!-- Header -->
+    <div class="modal-header">
+      <h2>Your Offers</h2>
+      <button class="close-btn" (click)="close()">✕</button>
+    </div>
+
+    @if (offers().length > 0) {
+
+      @for (offer of offers(); track offer.id) {
+
+        <div class="offer-card">
+
+          <div class="left">
+            <div class="icon">🏢</div>
+
+            <div class="info">
+              <h3>{{ offer.companyName }}</h3>
+              <p>{{ offer.jobTitle }}</p>
+
+              <div class="details">
+                <span>₹ {{ offer.packageLpa }} LPA</span>
+                <span>📍 {{ offer.location }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="status">
+            ⏳ {{ offer.studentResponse }}
+          </div> -->
+
+        </div>
+
+        <!-- Actions for each offer -->
+        <!--
+        <div class="actions">
+          <button class="accept" (click)="acceptOffer(offer)">
+            ✔ Accept Offer
+          </button>
+
+          <button class="decline" (click)="declineOffer(offer)">
+            ✖ Decline
+          </button>
+        </div>
+        -->
+
+      }
+
+    }
+
+    <!-- If no offers -->
+    @if (offers().length === 0) {
+      <p style="text-align:center; margin-top:20px;">
+        No offers available
+      </p>
+    }
+
+  </div>
+</div>

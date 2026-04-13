@@ -1,0 +1,95 @@
+<div class="dashboard">
+  <div class="header">
+    <h1>Admin Dashboard</h1>
+    <p>Placement Cell — ABC Engineering College</p>
+  </div>
+
+  <!-- Top Cards -->
+  <div class="card-grid">
+    <div class="card blue">
+      <div class="icon">👥</div>
+      <h2>{{dashboardData?.totalStudents}}</h2>
+      <span>Total Students</span>
+    </div>
+
+    <div class="card blue">
+      <div class="icon">💼</div>
+      <h2>{{dashboardData?.jobsPosted}}</h2>
+      <span>Jobs Posted</span>
+    </div>
+
+    <div class="card blue">
+      <div class="icon">✔</div>
+      <h2>{{dashboardData?.placedStudents}}</h2>
+      <span>Placed Students</span>
+    </div>
+
+    <div class="card blue">
+      <div class="icon">📈</div>
+      <h2>{{dashboardData?.application}}</h2>
+      <span>Applications</span>
+    </div>
+  </div>
+ 
+  <div class="dashboard-grid">
+
+    <!-- Placement Leaderboard -->
+    <div class="card">
+      <h3>🏆 Placement Leaderboard</h3>
+      <p class="subtitle">Top students ranked by package</p>
+  
+      <table class="leaderboard">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Student</th>
+            <th>Company</th>
+            <th>Package</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let student of dashboardData?.placedLeaderBoard">
+            <td>🥇</td>
+            <td>
+              {{student?.studentName}}
+              <small>{{student?.branch}}</small>
+            </td>
+            <td><span class="tag">{{student?.companyName}}</span></td>
+            <td class="pkg">{{student?.packageLpa}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  
+    <!-- Company-wise Hiring -->
+    <div class="card">
+      <h3>🏢 Company-wise Hiring</h3>
+      <p class="subtitle">Summary of hires by company</p>
+  
+      <table class="leaderboard">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Hires</th>
+            <!-- <th>Departments</th> -->
+            <th>Avg Pkg</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let company of dashboardData?.companywiseHiring">
+            <td>{{company?.companyName}}</td>
+            <td><span class="circle">{{company?.hiringCount}}</span></td>
+            <!-- <td><span class="dept">B.Tech CSE</span></td> -->
+            <td class="pkg">{{company?.packageLpa}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  
+    
+  </div>
+</div>

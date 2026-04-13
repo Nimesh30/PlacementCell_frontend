@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlacePro | Campus Portal</title>
+</head>
+<body>
+
+<header>
+    <div class="logo">PlacePro<span>.</span></div>
+    <span class="nav-pill">Placement Drive Management</span>
+</header>
+
+<main>
+
+    <div class="badge">Campus Placement Portal</div>
+
+        <h1>One Profile.<br><span class="accent">Infinite Opportunities.</span></h1>
+        <p class="subtext">Create your student profile once. Apply to multiple companies with a single click and track every opportunity.</p>
+
+    <div class="cards">
+        <div class="card" [routerLink]="['/login']">
+            <!-- <div class="icon">🎓</div> -->
+            <!-- <img src="../../assets/graduating-student.png"> -->
+            <!-- <img class="icon" src="/student.png"> -->
+            <img class="icon" src="/graduating-student.png">
+            <h3>Student</h3>
+            <div class="btn">Login & Register -></div>
+        </div>
+
+        <div class="card" [routerLink]="['/adminlogin']">
+            <!-- <div class="icon">🏢</div> -->
+            <img class="icon" src="/admin.png">
+            <h3>Admin</h3>
+            <div class="btn">Placement Cell →</div>
+        </div>
+    </div>
+
+   
+</main>
+
+<footer>© 2025 PlacePro. All rights reserved.</footer>
+
+</body>
+</html>

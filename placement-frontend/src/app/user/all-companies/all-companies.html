@@ -1,0 +1,67 @@
+<div class="students-page">
+
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <h2>Companies Visited</h2>
+        <p>{{filteredStudents.length}} companies</p>
+      </div>
+      <!-- <button class="export-btn" (click)="exportStudents()">⬇ Export All</button> -->
+    </div>
+  
+    <!-- Search -->
+    <div class="toolbar">
+      <input
+        type="text"
+        placeholder="Search company..."
+        [(ngModel)]="searchText"
+        (input)="applyFilters()"
+      />
+      <select [(ngModel)]="selectedYear" (change)="applyFilters()">
+        <option value="all">All Years</option>
+        <option *ngFor="let y of years" [value]="y">{{y}}</option>
+      </select>
+    </div>
+  
+    <!-- Table -->
+    <div class="table-container">
+        <table>
+      
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Job Role</th>
+              <th>Date</th>
+              <th>Package (LPA)</th>
+            </tr>
+          </thead>
+      
+          <tbody>
+      
+            <tr *ngFor="let c of filteredStudents">
+      
+              <td class="student">
+                <div class="avatar">🏢</div>
+                <div>
+                  <strong>{{ c.companyName }}</strong>
+                </div>
+              </td>
+      
+              <td>{{ c.jobTitle }}</td>
+      
+              <td>{{ c.deadline }}</td>
+      
+              <td>
+                <span class="package">
+                  {{ c.packageLpa }} LPA
+                </span>
+              </td>
+      
+            </tr>
+      
+          </tbody>
+      
+        </table>
+      </div>
+  
+  </div>

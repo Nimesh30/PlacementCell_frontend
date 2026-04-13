@@ -1,0 +1,89 @@
+<div class="manage-container">
+
+  <!-- HEADER -->
+  <div class="top-section">
+    <div class="header">
+      <div class="jobd">
+        <h1>Manage Jobs</h1>
+        <p>{{ totaljobs() }} jobs posted</p>
+      </div>
+
+      <div class="header-actions">
+        <button class="post-btn" (click)="openAddnewjobModal()">+ Post New Job</button>
+      </div>
+
+      <app-addnewjobmodal
+        *ngIf="isOpen"
+        [jobData]="selectedJob"
+        (close)="closeModal()">
+      </app-addnewjobmodal>
+    </div>
+
+   <div class="filter-row">
+  <div class="search-box">
+    <input type="text" placeholder="Search companies or roles..." (input)="updateSearch($event)" />
+  </div>
+
+  <div class="filter-dropdown">
+    <select (change)="updateFilter($event)">
+      <option value="all">All Jobs</option>
+      <option value="active">Active Jobs</option>
+      <option value="expired">Closed Jobs</option>
+    </select>
+  </div>
+</div>
+  </div>
+  <!-- JOB LIST -->
+  <div class="job-card" *ngFor="let job of jobs()">
+    <div class="job-top">
+      <div class="left-section">
+        <div class="company-icon">🏢</div>
+        <div class="companyd">
+          <h2>{{ job.companyName }}</h2>
+          <p>{{ job.jobTitle }}</p>
+          <div class="tags">
+            <span class="tag">CGPA ≥ {{ job.minCgpa }}</span>
+            <span *ngFor="let degree of job.eligibleDegrees.split(',')" class="tag">{{ degree }}</span>
+            <span class="tag deadline">{{ job.deadline }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-section">
+        <span class="salary-badge">{{ job.packageLpa }} LPA</span>
+        <span class="location">📍 {{ job.location }}</span>
+        <div class="applicants">👥 {{ job.applicationCount }}</div>
+
+        <button class="more-btn" (click)="toggleDescription(job)">
+          {{ job.showDescription ? '👁 Hide' : '👁 View' }}
+        </button>
+
+        <button class="export-btn" (click)="downloadStudents(job.id, job.companyName)">
+          ⬇ Export
+        </button>
+
+        <!-- 3-dot menu -->
+        <div class="action-menu">
+          <button class="three-dot-btn" (click)="toggleJobMenu(job, $event)"> ⋮ </button>
+          <div class="dropdown" *ngIf="job.showMenu">
+            <button class="menu-item" (click)="editJob(job, $event)">✏️ Update</button>
+            <button class="menu-item delete" (click)="deleteJob(job.id, $event,job)">🗑 Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="description" *ngIf="job.showDescription">
+      <h4>Job Description</h4>
+      <p [innerHTML]="sanitizer.bypassSecurityTrustHtml(job.description)"></p>
+    </div>
+  </div>
+`
+  <!-- PAGINATION -->
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage() === 0">⬅ Previous</button>
+    <span>Page {{ currentPage() + 1 }} of {{ totalPages() }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage() >= totalPages() - 1">Next ➡</button>
+  </div>
+
+</div>

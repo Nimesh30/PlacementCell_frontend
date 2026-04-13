@@ -1,0 +1,25 @@
+<body>
+    <div class="main">
+        <div class="logincontainer">
+            <div class="headContainer">
+                <img class="icon" src="/graduating-student.png">
+                <h2>Welcome Back</h2>
+                <p>Login your Student Account</p>
+            </div>
+            <div class="inputContainer">
+                <form  (ngSubmit)="login()">
+                    <label>Email</label>
+                    <input type="email"   name="email" [(ngModel)]="email" placeholder="Enter yout Email">
+                    <label>Password</label>
+                    <input type="password" name="password" [(ngModel)]="password" placeholder="Enter your password">
+                    <input type="submit" value="Login">
+                </form>
+                <div class="footer-links">
+                    <h6>Dont have an account? <a (click)="goToRegister()" [routerLink]="['/register']">Register</a></h6>
+                    <a [routerLink]="['/forgot-password']">Forgot Password?</a>
+                    <a [routerLink]="['/']" class="back-link">← Back to Role Selection</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

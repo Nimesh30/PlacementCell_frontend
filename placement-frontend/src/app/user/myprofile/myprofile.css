@@ -1,0 +1,119 @@
+/* Page Background */
+.page-wrapper {
+    background-color: #f3f4f6;
+    padding: 30px;
+  }
+/* Top Buttons */
+.top-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.save-btn,
+.cancel-btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid #d1d5db;
+  background: white;
+}
+
+.save-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+}
+
+.save-btn:hover {
+  background-color: #1e40af;
+}
+
+.cancel-btn:hover {
+  background-color: #e5e7eb;
+}
+
+/* Card Container */
+.card-container {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 30px;
+}
+
+/* Title */
+.card-container h2 {
+  font-size: 20px;
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Grid Layout */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 30px;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+/* Inputs */
+.form-group input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  font-size: 14px;
+  transition: border 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+/* Resume Full Width */
+.full-width {
+  grid-column: span 2;
+}
+
+/* error message display */
+.error{
+  color:#e53935;
+  font-size:12px;
+  margin-top:4px;
+  display:block;
+}
+
+input.ng-touched.ng-invalid{
+  border:1px solid #e53935;
+}
+
+input.ng-touched.ng-valid{
+  border:1px solid #4caf50;
+}
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: white;
+  height: 40px;
+}

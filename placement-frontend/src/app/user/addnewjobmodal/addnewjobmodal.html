@@ -1,0 +1,81 @@
+<!-- Overlay -->
+<div class="modal-overlay" (click)="closeModal()">
+
+  <!-- Modal Container -->
+  <div class="modal-container" (click)="$event.stopPropagation()">
+
+    <!-- Header -->
+    <div class="modal-header">
+      <div>
+        <h2>{{ jobData ? 'Update Job' : 'Post New Job' }}</h2>
+        <p>{{ jobData ? 'Edit job details (*) Required' : 'Fill in company and job details (*) Required' }}</p>
+      </div>
+      <button class="close-btn" (click)="closeModal()">✕</button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+
+      <form class="form-grid" [formGroup]="jobForm" (ngSubmit)="submitJob()">
+
+        <div class="form-group">
+          <label>Company Name *</label>
+          <input type="text" formControlName="companyName" placeholder="e.g. Google">
+        </div>
+
+        <div class="form-group">
+          <label>Job Title *</label>
+          <input type="text" formControlName="jobTitle" placeholder="e.g. Software Engineer">
+        </div>
+
+        <div class="form-group">
+          <label>Package</label>
+          <input type="text" formControlName="packageLpa" placeholder="e.g. 6">
+        </div>
+
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" formControlName="location" placeholder="e.g. Bangalore">
+        </div>
+
+        <div class="form-group">
+          <label>Min CGPA</label>
+          <input type="number" formControlName="minCgpa" step="0.1" placeholder="e.g. 7.5">
+        </div>
+
+        <div class="form-group">
+          <label>Application Deadline *</label>
+          <input type="date" formControlName="deadline">
+        </div>
+
+        <!-- ✅ UPDATED CHECKBOX SECTION -->
+        <div class="form-group full-width">
+          <label>Eligible Degrees</label>
+
+          <div class="checkbox-group">
+            <div *ngFor="let degree of degreeList; let i = index" class="checkbox-item">
+              <input type="checkbox" [formControl]="eligibleDegrees.at(i)" />
+              <label for="degree{{i}}">{{ degree }}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <label>Job Description *</label>
+          <ckeditor [editor]="Editor" formControlName="description"></ckeditor>
+        </div>
+
+        <div class="modal-footer">
+          <div class="button-group">
+            <button type="button" class="btn-cancel" (click)="closeModal()">Cancel</button>
+            <button class="btn-submit" type="submit">
+              {{ jobData ? 'Update Job' : 'Post Job' }}
+            </button>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

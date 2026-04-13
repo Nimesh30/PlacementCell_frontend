@@ -1,0 +1,63 @@
+<div class="app-container">
+  <main class="main-content">
+    <header>
+      <h1>Welcome , {{username()}}</h1>
+      <!-- <p>Computer Science · 2025 Batch · CGPA 8.4</p> -->
+    </header>
+
+    <section class="stats-grid">
+      <div class="card stat-card">
+        <div class="icon-box blue-bg">💼</div>
+        <h3>{{totaljobs()}}</h3>
+        <p>Jobs Available</p>
+      </div>
+      <div class="card stat-card">
+        <div class="icon-box light-blue-bg">📖</div>
+        <h3>{{jobService.applicationCount()}}</h3>
+        <p>Applications Sent</p>
+      </div>
+      <div class="card stat-card" (click)="openOfferModal()">
+        <div class="icon-box green-bg">✅</div>
+          <h3>{{totaloffers()}}</h3>
+          <p>Offers Received</p>
+      </div>
+      <div class="card stat-card">
+        <div class="icon-box grey-bg">🕒</div>
+        <h3>1</h3>
+        <p>Under Review</p>
+      </div>
+    </section>
+    <section class="card job-section">
+  <h3>Recently Added Jobs</h3>
+
+  <div class="job-slider">
+
+    @for (job of jobs(); track job.id) {
+
+      <div class="job-item">
+
+        <div class="job-brand google-bg">
+          {{ getInitial(job.companyName) }}
+        </div>
+
+        <div class="job-info">
+          <strong>{{ job.companyName }}</strong>
+          <p>{{ job.jobTitle }}</p>
+        </div>
+
+        <div class="job-meta">
+          <span class="lpa blue-text">{{ job.packageLpa }}+ LPA</span>
+          <p>{{ job.location }}</p>
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+</section>
+  </main>
+  @if (isOfferModalOpen()) {
+  <app-offer-received-model (closeModal)="closeOfferModal()"></app-offer-received-model>
+} 
+</div>

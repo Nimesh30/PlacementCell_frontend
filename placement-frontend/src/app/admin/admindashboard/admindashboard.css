@@ -1,0 +1,203 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f5f7fb;
+}
+
+.dashboard {
+  padding: 30px;
+}
+
+/* Header */
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.header p {
+  color: gray;
+  margin-top: 5px;
+}
+
+/* ================= Cards Top ================= */
+
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  margin-top:20px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 3px 8px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  margin: 6px 0 2px;
+}
+
+.card span {
+  color: gray;
+  font-size: 14px;
+}
+
+.blue {
+  border-left: 4px solid #3b82f6;
+}
+
+.green {
+  border-left: 4px solid #22c55e;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+/* ================= Progress ================= */
+
+.progress-block {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+/* ================= Applications ================= */
+
+.app-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.app-item p {
+  margin: 0;
+  color: gray;
+  font-size: 14px;
+}
+
+.badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.applied {
+  background: #e0ecff;
+  color: #3b82f6;
+}
+
+.selected {
+  background: #d1fae5;
+  color: #16a34a;
+}
+
+/* ================= Dashboard Grid ================= */
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+  gap:20px;
+  margin-top:20px;
+}
+
+/* ================= Table ================= */
+
+.leaderboard{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.leaderboard th{
+  text-align:left;
+  padding:10px 0;
+  color:#777;
+  font-weight:500;
+}
+
+.leaderboard td{
+  padding:12px 0;
+  border-top:1px solid #eee;
+}
+
+.leaderboard small{
+  display:block;
+  color:#888;
+  font-size:12px;
+}
+
+.tag{
+  background:#f2f2f2;
+  padding:4px 10px;
+  border-radius:12px;
+  font-size:12px;
+}
+
+.dept{
+  background:#f2f2f2;
+  padding:4px 10px;
+  border-radius:8px;
+  font-size:12px;
+}
+
+.pkg{
+  font-weight:600;
+}
+
+.circle{
+  background:#e8f0fe;
+  padding:6px 12px;
+  border-radius:50%;
+  font-weight:600;
+}
+
+/* Prevent table breaking on mobile */
+
+.card{
+  overflow-x:auto;
+}
+
+/* ================= Mobile Responsive ================= */
+
+@media (max-width:900px){
+
+.dashboard{
+  padding:20px;
+}
+
+}
+
+@media (max-width:600px){
+
+.dashboard{
+  padding:15px;
+}
+
+.header h1{
+  font-size:22px;
+}
+
+.card{
+  padding:15px;
+}
+
+.leaderboard th,
+.leaderboard td{
+  font-size:13px;
+}
+
+}

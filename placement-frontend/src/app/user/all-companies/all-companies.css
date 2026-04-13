@@ -1,0 +1,196 @@
+/* Page Layout */
+.students-page {
+  padding: 30px;
+  background: #f5f7fb;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.header p {
+  margin-top: 4px;
+  color: #6b7280;
+}
+
+/* Export Button */
+
+.export-btn {
+  background: #e6f4ea;
+  color: #1e7e34;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.export-btn:hover {
+  background: #d4f0db;
+}
+
+/* Toolbar */
+
+.toolbar {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.toolbar input {
+  flex: 1;
+  min-width: 250px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+}
+
+.toolbar input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+/* Filters */
+
+.filters {
+  display: flex;
+  gap: 8px;
+}
+
+.filters button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filters button.active {
+  background: #3b82f6;
+  color: white;
+  border: none;
+}
+
+/* Table Container */
+
+.table-container {
+  margin-top: 20px;
+  background: white;
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Table */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f3f4f6;
+}
+
+th {
+  text-align: left;
+  font-size: 13px;
+  color: #6b7280;
+  padding: 14px;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 14px;
+  border-top: 1px solid #eee;
+  font-size: 14px;
+}
+
+/* Student Column */
+
+.student {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 16px;
+}
+
+/* CGPA */
+
+.cgpa {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+/* Status */
+
+.placed {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.not-placed {
+  color: #9ca3af;
+}
+
+/* Responsive Design */
+
+@media (max-width: 900px) {
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    display: none;
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  th:nth-child(5),
+  td:nth-child(5) {
+    display: none;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .toolbar {
+    flex-direction: column;
+  }
+
+}

@@ -1,0 +1,96 @@
+<div class="admin-container">
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1>Manage Notices</h1>
+      <p>{{ notices.length }} notices posted</p>  
+    </div>
+
+    <button class="create-btn" (click)="openForm()">+ Create Notice</button>
+  </div>
+  
+  <!-- Create / Edit Form -->
+  <div class="form-card" *ngIf="showForm">
+    <h2>{{ isEditMode ? 'Update Notice' : 'Create Notice' }}</h2>
+
+    <form #noticeForm="ngForm" (ngSubmit)="submitNotice()">
+      <input
+        type="text"
+        placeholder="Notice Title"
+        [(ngModel)]="notice.title"
+        name="title"
+        required
+        minlength="3"
+        #titleModel="ngModel"
+      />
+
+      <div class="error" *ngIf="titleModel.invalid && titleModel.touched">
+        <small *ngIf="titleModel.errors?.['required']">Title is required</small>
+        <small *ngIf="titleModel.errors?.['minlength']">Minimum 3 characters required</small>
+      </div>
+      <ckeditor [editor]="Editor" [(ngModel)]="notice.message" name="message"></ckeditor>
+
+      <input
+        type="text"
+        placeholder="File URL (optional)"
+        [(ngModel)]="notice.fileUrl"
+        name="fileUrl"
+      />
+
+      <label class="checkbox">
+        <input type="checkbox" [(ngModel)]="notice.pinned" name="pinned" />
+        Pin Notice
+      </label>
+
+      <div class="form-buttons">
+        <button type="submit">
+          {{ isEditMode ? 'Update Notice' : 'Post Notice' }}
+        </button>
+
+        <button type="button" class="cancel" (click)="closeForm()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Notice Cards -->
+  <div class="notice-card" *ngFor="let n of notices" (click)="toggleNotice(n)">
+    <!-- Notice Header -->
+    <div class="notice-header">
+      <div class="left">
+        <div class="icon">📄</div>
+
+        <div>
+          <h3>
+            {{ n.title }}
+            <span *ngIf="n.pinned" class="urgent">URGENT</span>
+          </h3>
+
+          <!-- <p *ngIf="!n.expanded" class="short-text">
+            {{ getPreviewText(n.message) }}
+          </p> -->
+        </div>
+      </div>
+
+      <div class="right">
+        <span class="date">
+          {{ n.createdAt | date: 'mediumDate' }}
+        </span>
+
+        <div class="notice-actions">
+          <button class="edit" (click)="editNotice(n); $event.stopPropagation()">Edit</button>
+
+          <button class="delete" (click)="deleteNotice(n.id); $event.stopPropagation()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Expandable Notice Body -->
+    <div class="notice-body" *ngIf="n.expanded">
+      <p [innerHTML]="sanitizer.bypassSecurityTrustHtml(n.message)"></p>
+
+      <a *ngIf="n.fileUrl" [href]="n.fileUrl" target="_blank"> 📄 Attachment </a>
+    </div>
+  </div>
+</div>

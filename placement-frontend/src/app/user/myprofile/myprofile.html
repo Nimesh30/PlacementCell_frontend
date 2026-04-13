@@ -1,0 +1,133 @@
+<div class="page-wrapper">
+
+  <div class="top-actions">
+    <button class="cancel-btn" type="button" (click)="onCancel()" *ngIf="isFormEditable">
+      Cancel
+    </button>
+
+    <button class="save-btn" type="button" (click)="onSave()">
+      {{ isFormEditable ? (isEditMode ? 'Save Changes' : 'Save Profile') : 'Update Profile' }}
+    </button>
+  </div>
+
+  <div class="card-container">
+    <h2>Academic & Personal Details</h2>
+
+    <form [formGroup]="academicForm" class="form-grid">
+
+      <div class="form-group">
+        <label>STUDENT ID</label>
+        <input type="text" formControlName="studentId" />
+      </div>
+
+      <div class="form-group">
+        <label>FULL NAME</label>
+        <input type="text" formControlName="fullName" />
+      </div>
+
+      <div class="form-group">
+        <label>COLLEGE EMAIL</label>
+        <input type="email" formControlName="collegeEmail" />
+      </div>
+
+      <div class="form-group">
+        <label>PERSONAL EMAIL</label>
+        <input type="email" formControlName="personalEmail" />
+      </div>
+
+      <div class="form-group">
+        <label>MOBILE NUMBER</label>
+        <input type="text" formControlName="mobileNumber" />
+      </div>
+
+      <div class="form-group">
+        <label>10TH MARKS (%)</label>
+        <input type="number" formControlName="tenthMarks" />
+      </div>
+
+      <div class="form-group">
+        <label>12TH MARKS (%)</label>
+        <input type="number" formControlName="twelfthMarks" />
+      </div>
+
+      <div class="form-group">
+        <label>STREAM</label>
+        <input type="text" formControlName="stream" />
+      </div>
+
+      <!-- <div class="form-group">
+        <label>Branch</label>
+        <input type="text" formControlName="branch" />
+         
+      </div> -->
+      <div class="form-group">
+        <label>Branch</label>
+        <select formControlName="branch">
+          <option value="">Select</option>
+          <option value="BTech">BTech</option>
+          <option value="BTech_IT">BTech_IT</option>
+          <option value="BTech_CE">BTech_CE</option>
+          <option value="BTech_AI">BTech_AI</option>
+          <option value="MCA">MCA</option>
+          <option value="MScIT">MScIT</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>BACHELOR'S CGPA</label>
+        <input type="number" formControlName="bachelorsCgpa" />
+      </div>
+
+      <div class="form-group">
+        <label>MASTER'S CGPA</label>
+        <input type="number" formControlName="mastersCgpa" />
+      </div>
+
+      <div class="form-group">
+        <label>INSTITUTE</label>
+        <input type="text" formControlName="institute" />
+      </div>
+
+      <div class="form-group">
+        <label>DEPARTMENT</label>
+        <input type="text" formControlName="department" />
+      </div>
+
+      <div class="form-group">
+        <label>PASSING YEAR</label>
+        <input type="number" formControlName="passingYear" />
+      </div>
+
+      <!-- <div class="form-group full-width">
+        <label>UPLOAD RESUME</label>
+        <input type="file"
+               (change)="onFileChange($event)"
+               [disabled]="!isFormEditable" />
+
+        <div *ngIf="profile?.imageUrl" style="margin-top: 10px;">
+          <a [href]="profile.imageUrl" 
+   target="_blank"
+   rel="noopener noreferrer"
+   class="btn btn-success">
+   View Uploaded Resume
+</a>
+        </div>
+      </div> -->
+
+      <div class="form-group full-width">
+
+        <label>UPLOAD RESUME</label>
+        <input type="file" (change)="onFileChange($event)" [disabled]="!isFormEditable" />
+
+        <div *ngIf="profile?.imageUrl && !isFormEditable" style="margin-top: 10px;">
+          <a [href]="profile.imageUrl" target="_blank" rel="noopener noreferrer" class="btn btn-success">
+            View Uploaded Resume
+          </a>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+
+</div>

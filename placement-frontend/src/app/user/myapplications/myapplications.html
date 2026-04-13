@@ -1,0 +1,61 @@
+<div class="applications-container">
+
+  <h1 class="title">My Applications</h1>
+  <p class="subtitle">{{jobservice.applicationCount()}} applications submitted</p>
+
+  <!-- Slider Container -->
+  <div class="card-slider">
+
+    @for (app of applications; track app.applicationId) {
+
+    <div class="application-card">
+
+      <div class="left-section">
+
+        <div class="company-logo">
+          {{app?.companyName?.charAt(0)}}
+        </div>
+
+        <div class="job-details">
+          <h3>{{app?.companyName}}</h3>
+          <p class="role">{{app?.jobTitle}}</p>
+          <p class="date">
+            Applied on: {{app?.appliedAt | date:'yyyy-MM-dd HH:mm:ss'}}
+          </p>
+        </div>
+
+      </div>
+
+      <div class="right-section">
+
+        <div class="status">
+          {{app?.status}}
+        </div>
+
+        <p class="salary">
+          {{app?.packageLpa}} LPA
+        </p>
+
+      </div>
+
+    </div>
+
+    }
+
+  </div>
+
+  <div class="pagination">
+
+    <button (click)="prevPage()" [disabled]="currentPage === 0">
+      Previous
+    </button>
+
+    <span>Page {{currentPage + 1}} / {{totalPages}}</span>
+
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages - 1">
+      Next
+    </button>
+
+  </div>
+
+</div>

@@ -1,0 +1,54 @@
+<div class="notice-container">
+
+    <h1>📢 Notice Board</h1>
+    <p class="subtitle">Latest announcements from Placement Cell</p>
+  
+    <div *ngIf="notices.length === 0">
+      No notices available
+    </div>
+  
+    <div *ngFor="let notice of notices"
+         class="notice-card"
+         [ngClass]="{ urgent: notice.pinned }"
+         (click)="toggleNotice(notice)">
+  
+      <div class="notice-header">
+  
+        <div class="left">
+          <div class="icon">
+            {{ notice.pinned ? '❗' : '🔔' }}
+          </div>
+  
+          <div>
+            <h3>
+              {{ notice.title }}
+              <!-- <span *ngIf="isNew(notice)" class="new-badge">NEW</span> -->
+            </h3>
+  
+            <!-- <p *ngIf="!notice.expanded" class="short-text">
+              {{ getPreviewText(notice.message) }}
+            </p> -->
+          </div>
+        </div>
+  
+        <div class="right">
+          <span *ngIf="notice.pinned" class="badge">URGENT</span>
+          <span class="date">
+            {{ notice.createdAt | date:'mediumDate' }}
+          </span>
+        </div>
+  
+      </div>
+  
+      <!-- Expand Content -->
+      <div class="notice-body" *ngIf="notice.expanded">
+        <p [innerHTML]="sanitizer.bypassSecurityTrustHtml(notice.message)"></p>
+  
+        <a *ngIf="notice.fileUrl" [href]="notice.fileUrl" target="_blank">
+          📄 Attachment
+        </a>
+      </div>
+  
+    </div>
+  
+  </div>

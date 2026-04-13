@@ -1,0 +1,97 @@
+<div class="mainContainer">
+
+  <!-- Header -->
+  <div class="headerSection">
+    <h1>Job Listings</h1>
+    <p>{{ jobs().length }} companies recruiting · Apply with one click</p>
+
+    <div class="searchBox">
+      <span class="searchIcon">🔍</span>
+      <input type="text" placeholder="Search companies or roles..." (input)="updateSearch($event)" />
+    </div>
+  </div>
+
+  <!-- @for (job of jobs(); track job){
+    <p>{{job.companyName}}</p>
+  } -->
+
+  <!-- Dynamic Job Cards -->
+  <div class="jobCard" *ngFor="let job of jobs()">
+
+    <div class="companyLogo">
+      {{ job.companyName.charAt(0) }}
+    </div>
+
+    <div class="jobDetails">
+
+      <div class="topRow">
+        <div>
+          <h2>{{ job.companyName }}</h2>
+          <p class="role">{{ job.jobTitle }}</p>
+        </div>
+
+        <div class="salary">
+          {{ job.packageLpa }} LPA
+        </div>
+      </div>
+
+      <div class="metaInfo">
+        <span>📍 {{ job.location }}</span>
+        <span>📅 Deadline: {{ job.deadline }}</span>
+        <span>✔ Min CGPA: {{ job.minCgpa }}</span>
+      </div>
+
+      <div class="tags">
+        <span *ngFor="let degree of job.eligibleDegrees.split(',')">
+          {{ degree }}
+        </span>
+      </div>
+
+
+      <div *ngIf="job.showDescription" class="descriptionBox">
+        <p [innerHTML]="sanitizer.bypassSecurityTrustHtml(job.description)"></p>
+      </div>
+
+      <!-- <div class="buttons">
+        <button class="viewBtn"
+                (click)="toggleDescription(job)">
+          {{ job.showDescription ? '▲ Hide Description' : '▼ View Description' }}
+        </button>
+
+           <button class="applyBtn"
+                (click)="openApplyModal(job)">
+           Apply Now →
+        </button>
+      </div> -->
+
+      <div class="buttons">
+        <button class="viewBtn" (click)="toggleDescription(job)">
+          {{ job.showDescription ? '▲ Hide Description' : '▼ View Description' }}
+        </button>
+
+        <!--  Show Apply button if eligible -->
+        <button *ngIf="isEligible(job)" class="applyBtn" (click)="openApplyModal(job)">
+          Apply Now →
+        </button>
+
+        <!--  Show message if not eligible -->
+        <span *ngIf="studentData() && !isEligible(job)" class="notEligible">
+          ❌ Not Eligible
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!-- <app-applymodal
+  *ngIf="selectedJob && studentData()"
+  [student]="studentData()"
+  (close)="closeModal()"
+  (submit)="closeModal()">
+</app-applymodal>  -->
+
+@if(selectedJob && studentData()) {
+<app-applymodal [student]="studentData()" [job]="selectedJob" (close)="closeModal()" (submit)="closeModal()">
+</app-applymodal>
+}

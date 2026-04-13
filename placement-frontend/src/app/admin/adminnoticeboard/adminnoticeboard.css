@@ -1,0 +1,255 @@
+.admin-container{
+    max-width:1000px;
+    margin:40px auto;
+    padding:20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* HEADER */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.header h1{
+    margin:0;
+}
+
+.header p{
+    color:#666;
+    font-size:14px;
+}
+
+/* Create Button */
+
+.create-btn{
+    background:#3b82f6;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:500;
+}
+
+.create-btn:hover{
+    opacity:0.9;
+}
+
+/* FORM */
+
+.form-card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    margin-bottom:25px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.06);
+}
+
+.form-card h2{
+    margin-bottom:15px;
+}
+
+/* Inputs */
+
+input,
+textarea{
+    width:100%;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ddd;
+    margin-bottom:14px;
+    font-size:14px;
+}
+
+textarea{
+    height:100px;
+    resize:none;
+}
+
+input:focus,
+textarea:focus{
+    outline:none;
+    border-color:#3b82f6;
+}
+
+/* Checkbox */
+
+.checkbox{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:15px;
+}
+
+.checkbox input{
+    width:auto;
+    margin:0;
+}
+
+/* Form Buttons */
+
+.form-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.form-buttons button{
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.form-buttons button[type="submit"]{
+    background:#3b82f6;
+    color:white;
+}
+
+.cancel{
+    background:#6b7280;
+    color:white;
+}
+
+/* NOTICE CARDS */
+
+.notice-card{
+    display:flex;
+    flex-direction:column;
+    background:#fff;
+    border-radius:12px;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.06);
+    cursor:pointer;
+}
+
+/* Header inside card */
+
+.notice-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* Left side */
+
+.left{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+}
+
+.icon{
+    background:#e8f0ff;
+    padding:10px;
+    border-radius:10px;
+    font-size:20px;
+}
+
+/* Title */
+
+h3{
+    margin:0;
+}
+
+/* Short preview */
+
+.short-text{
+    font-size:13px;
+    color:#666;
+    margin-top:4px;
+}
+
+/* Right side */
+
+.right{
+    text-align:right;
+}
+
+/* Date */
+
+.date{
+    font-size:12px;
+    color:#777;
+}
+
+/* URGENT badge */
+
+.urgent{
+    background:#ef4444;
+    color:white;
+    font-size:11px;
+    padding:4px 7px;
+    border-radius:6px;
+    margin-left:8px;
+}
+
+/* Notice Body */
+
+.notice-body{
+    margin-top:12px;
+    border-top:1px solid #ddd;
+    padding-top:12px;
+}
+
+/* Actions */
+
+.notice-actions{
+    margin-top:6px;
+    display:flex;
+    gap:8px;
+}
+
+.notice-actions button{
+    border:none;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.edit{
+    color:rgb(0, 0, 0);
+}
+
+.delete{
+    color:rgb(0, 0, 0);
+}
+
+.notice-actions button:hover{
+    opacity:0.9;
+}
+
+
+.error{
+    color:red;
+    font-size:13px;
+  }
+  
+  input.ng-invalid.ng-touched{
+    border:1px solid red;
+  }
+
+/* Responsive */
+
+@media(max-width:700px){
+
+.notice-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.right{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+}

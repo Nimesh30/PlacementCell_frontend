@@ -1,0 +1,126 @@
+/* login.component.css */
+:root {
+    --primary: #4f46e5;
+    --bg-blue: #70a6dc;
+    --white: #ffffff;
+    --dark: #1e293b;
+}
+
+.main {
+    background-color: #ffff;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.logincontainer {
+    background-color: #ffff;
+    padding: 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.headContainer {
+    text-align: center;
+}
+/* .headContainer span{
+    font-size: 40px;
+} */
+.icon{
+    width: 40px;
+    height: 40px;
+}
+.headContainer h2 {
+    color: #1e293b;
+    font-size: 1.8rem;
+    margin: 0.5rem 0;
+}
+
+/* Form & Input Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* This creates the 20px space you wanted */
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: -0.5rem;
+}
+
+input[type="email"], 
+input[type="password"] {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4338ca;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* The Submit Button with Click Effect */
+input[type="submit"] {
+    background-color:  #4f46e5;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+input[type="submit"]:hover {
+    background-color: #4338ca;
+}
+
+input[type="submit"]:active {
+    transform: scale(0.96); /* The squish effect */
+}
+
+/* Register link styling */
+a {
+    color: #4338ca;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.footer-links {
+    text-align: center;
+    margin-top: 1.2rem;
+}
+
+.footer-links a {
+    color: #4f46e5;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.back-link {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.8rem;
+    color: #64748b !important;
+}

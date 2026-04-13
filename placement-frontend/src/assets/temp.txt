@@ -1,0 +1,181 @@
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  FormGroup,
+  FormControl,
+  FormArray,
+  ReactiveFormsModule,
+  Validators,
+  AbstractControl,
+  ValidationErrors
+} from '@angular/forms';
+import { JobService } from 'app/Services/jobservice/jobservice';
+import { ChangeDetectorRef } from '@angular/core';
+
+@Component({
+  selector: 'app-addnewjobmodal',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './addnewjobmodal.html',
+  styleUrls: ['./addnewjobmodal.css']
+})
+export class AddNewJobModal implements OnInit {
+
+  @Input() jobData: any = null;
+  @Output() close = new EventEmitter<void>();
+
+  // Degree options
+  degreeList = [
+    'BTech',
+    'BTech_IT',
+    'BTech_CE',
+    'BTech_AI',
+    'MCA',
+    'MScIT'
+  ];
+
+  // Custom validator for at least one checkbox selected
+  atLeastOneSelected(control: AbstractControl): ValidationErrors | null {
+    const formArray = control as FormArray;
+    const selected = formArray.controls.some(ctrl => ctrl.value === true);
+    return selected ? null : { required: true };
+  }
+
+  // Form
+  jobForm: FormGroup = new FormGroup({
+    companyName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2)
+    ]),
+
+    jobTitle: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2)
+    ]),
+
+    packageLpa: new FormControl(''),
+
+    location: new FormControl('', [
+      Validators.required
+    ]),
+
+    minCgpa: new FormControl(''),
+
+    deadline: new FormControl('', [
+      Validators.required
+    ]),
+
+    eligibleDegrees: new FormArray([], this.atLeastOneSelected),
+
+    description: new FormControl('')
+  });
+
+  constructor(
+    private jobService: JobService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  // Getter for easy access
+  get eligibleDegrees(): FormArray<FormControl<boolean>> {
+    return this.jobForm.get('eligibleDegrees') as FormArray<FormControl<boolean>>;
+  }
+
+  ngOnInit(): void {
+
+    const degreeArray = this.eligibleDegrees;
+
+    // Initialize checkbox controls
+    this.degreeList.forEach(() => {
+      degreeArray.push(
+        new FormControl(false, { nonNullable: true })
+      );
+    });
+
+    // Edit mode
+    if (this.jobData) {
+
+      this.jobForm.patchValue({
+        companyName: this.jobData.companyName,
+        jobTitle: this.jobData.jobTitle,
+        packageLpa: this.jobData.packageLpa,
+        location: this.jobData.location,
+        minCgpa: this.jobData.minCgpa,
+        deadline: this.jobData.deadline,
+        description: this.jobData.description
+      });
+
+      // Pre-select degrees
+      if (this.jobData.eligibleDegrees) {
+
+        const selected = this.jobData.eligibleDegrees.split(',');
+
+        selected.forEach((deg: string) => {
+
+          const index = this.degreeList.indexOf(deg.trim());
+
+          if (index !== -1) {
+            degreeArray.at(index).setValue(true);
+          }
+
+        });
+
+      }
+    }
+
+  }
+
+  // Submit
+  submitJob() {
+
+    if (this.jobForm.invalid) {
+      this.jobForm.markAllAsTouched();
+      return;
+    }
+
+    const selectedDegrees = this.eligibleDegrees.value
+      .map((checked: boolean, i: number) =>
+        checked ? this.degreeList[i] : null
+      )
+      .filter((v: string | null) => v !== null);
+
+    const payload = {
+      ...this.jobForm.value,
+      eligibleDegrees: selectedDegrees.join(',')
+    };
+
+    if (this.jobData?.id) {
+
+      this.jobService.updateJob(this.jobData.id, payload).subscribe({
+        next: () => {
+          alert('Job updated successfully');
+          this.close.emit();
+        },
+        error: (err) => {
+          console.error(err);
+          alert('Update failed');
+        }
+      });
+
+    } else {
+
+      this.jobService.addJob(payload).subscribe({
+        next: () => {
+          alert('Job posted successfully');
+          this.close.emit();
+        },
+        error: (err) => {
+          console.error(err);
+          alert('Post failed');
+        }
+      });
+
+    }
+
+  }
+
+  // Close modal
+  closeModal() {
+    this.close.emit();
+  }
+
+}

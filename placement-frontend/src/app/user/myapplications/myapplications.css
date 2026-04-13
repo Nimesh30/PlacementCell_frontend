@@ -1,0 +1,183 @@
+/* Page Background */
+.applications-container {
+  background-color: #f4f6f9;
+  min-height: 100vh;
+  padding: 40px 60px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Title */
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #777;
+  margin-bottom: 30px;
+}
+
+/* ===== Vertical Slider ===== */
+
+.card-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  max-height: 500px;  
+  overflow-y: auto;    /* vertical scroll */
+  padding-right: 6px;
+}
+
+/* Scrollbar Style */
+.card-slider::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card-slider::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* ===== Card ===== */
+
+.application-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 110px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+}
+
+.application-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Left Section */
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Logo */
+.company-logo {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg,#4f8ef7,#3a6edc);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Job Details */
+.job-details h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.role {
+  margin: 4px 0;
+  color: #555;
+}
+
+.date {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Right Section */
+.right-section {
+  text-align: center;
+}
+
+/* Status Badge */
+.status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background-color: #e6f0ff;
+  color: #2d6cdf;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Salary */
+.salary {
+  font-weight: 600;
+  color: #2d6cdf;
+  margin: 0;
+}
+
+/* Pagination Container */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 25px;
+  padding: 12px 0;
+}
+
+/* Page Info */
+.pagination span {
+  font-size: 15px;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Buttons */
+.pagination button {
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  background-color: #3f51b5;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.pagination button:hover:not(:disabled) {
+  background-color: #2f3ea8;
+  transform: translateY(-1px);
+}
+
+/* Disabled Button */
+.pagination button:disabled {
+  background-color: #c5c5c5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .pagination {
+    gap: 10px;
+  }
+
+  .pagination button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .pagination span {
+    font-size: 13px;
+  }
+}

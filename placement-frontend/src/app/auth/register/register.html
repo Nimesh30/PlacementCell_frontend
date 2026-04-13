@@ -1,0 +1,33 @@
+<div class="main-wrapper">
+    <div class="registerContainer">
+        <div class="headContainer">
+            <span class="logo-text">PlacePro<span>.</span></span>
+            <h3>Create Account</h3>
+            <p>Register as a Student</p>
+        </div>
+        
+        <form class="formBody" (ngSubmit)="register()">
+            <div class="inputGroup">
+                <label>Full Name</label>
+                <input type="text" name="username"   [(ngModel)]="username" placeholder="Enter your full name">
+            </div>
+
+            <div class="inputGroup">
+                <label>Student Id</label>
+                <input type="text" name="studentId"   [(ngModel)]="studentId" placeholder="Enter your student id">
+            </div>
+
+            <div class="inputGroup">
+                <label>Email</label>
+                <input type="email" name="email"  [(ngModel)]="email" placeholder="Enter your college email">
+            </div>
+
+            <button type="submit" class="submit-btn">Create Account</button>
+            
+            <div class="footer-links">
+                <h6>Already have an account? <a [routerLink]="['/login']">SignIn</a></h6>
+                <a [routerLink]="['/']" class="back-link">← Back to Role Selection</a>
+            </div>
+        </form>
+    </div>
+</div>
